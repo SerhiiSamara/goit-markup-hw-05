@@ -85,12 +85,28 @@ h3 {
 }
 
 .nav-item {
+  position: relative;
+
   padding-top: 32px;
   padding-bottom: 32px;
 }
 
 .nav-item + .nav-item {
   margin-left: 50px;
+}
+
+.nav-link.current::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  height: 4px;
+  width: 100%;
+
+  background-color: var(--accent-color);
+  border-radius: 2px;
 }
 
 .nav-link {
@@ -100,6 +116,8 @@ h3 {
   line-height: 1.1;
   letter-spacing: 0.02em;
   text-decoration: none;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link.current {
@@ -123,6 +141,9 @@ h3 {
 .contacts-item {
   display: flex;
   align-items: center;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contacts-item + .contacts-item {
@@ -157,6 +178,8 @@ h3 {
 /* hero */
 
 .hero {
+  position: relative;
+
   padding-top: 200px;
   padding-bottom: 200px;
   max-width: 1600px;
@@ -170,6 +193,51 @@ h3 {
     ),
     url(../images/hero-bg.jpg);
   background-color: var(--hero-bg);
+}
+
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  min-width: 528px;
+  min-height: 581px;
+
+  transform: translate(-50%, -50%);
+  background-color: var(--primary-background-color);
+}
+
+.modal > .button-close {
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 30px;
+  width: 30px;
+  margin-right: 8px;
+  margin-top: 8px;
+
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: inherit;
 }
 
 .hero > .container {
@@ -214,6 +282,7 @@ h3 {
   color: var(--light-text-color);
 
   background-color: var(--accent-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button.primary:hover,
@@ -241,6 +310,10 @@ h3 {
 }
 
 /* section features */
+
+.section.features {
+  padding-bottom: 0;
+}
 
 .features-list {
   display: flex;
@@ -283,9 +356,9 @@ h3 {
 
 /* section activities */
 
-.section.activities {
-  padding-top: 0;
-}
+/* .section.activities {
+  padding-top: 94;
+} */
 
 .activities-list {
   display: flex;
@@ -366,8 +439,11 @@ h3 {
   padding: 12px;
 
   fill: var(--company-color);
+  background-color: #fff;
 
   border-radius: 50%;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-list .icons-list .link:hover,
@@ -408,6 +484,9 @@ h3 {
 
 .clients-list .link {
   fill: var(--company-color);
+
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-list .link:hover,
@@ -462,6 +541,8 @@ h3 {
 .footer-list .link {
   color: var(--light-link-color);
   text-decoration: none;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-list .link:hover,
@@ -494,11 +575,12 @@ h3 {
 
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-icons > .item:hover,
 .footer-icons > .item:focus {
-  background: var(--accent-color);
+  background-color: var(--accent-color);
 }
 
 .footer-icons > .item:not(:last-child) {
@@ -539,11 +621,14 @@ h3 {
 .button-list .button.secondary {
   color: var(--title-text-color);
 
-  background: var(--secodary-background-color);
+  background-color: var(--secodary-background-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.button.secondary:hover,
-.button.secondary:focus {
+.button-list .button.secondary:hover,
+.button-list .button.secondary:focus {
   color: var(--light-text-color);
 
   background-color: var(--accent-color);
@@ -566,6 +651,8 @@ h3 {
 
 .example-list > .cell:not(:nth-last-child(-n + 3)) {
   margin-bottom: 30px;
+
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .example-list > .cell:hover,
@@ -576,9 +663,38 @@ h3 {
   cursor: pointer;
 }
 
+.example-thumb {
+  position: relative;
+
+  overflow: hidden;
+}
+
 .example-list .img {
   display: block;
   width: 370px;
+}
+
+.example-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  padding: 63px 24px;
+  width: 100%;
+  height: 100%;
+
+  color: var(--light-text-color);
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+
+  background: rgba(33, 150, 243, 0.9);
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.example-list > .cell:hover .example-overlay {
+  transform: translateY(0);
 }
 
 .example-list .text-box {
