@@ -193,6 +193,7 @@ h3 {
     ),
     url(../images/hero-bg.jpg);
   background-color: var(--hero-bg);
+  background-size: cover;
 }
 
 .backdrop {
