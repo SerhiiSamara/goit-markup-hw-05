@@ -397,21 +397,21 @@ h3 {
   display: block;
 }
 
-.activities-list .text {
+.activities-list .text-box {
   position: absolute;
   bottom: 0;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   height: 70px;
   width: 100%;
-  padding-top: 27px;
   margin: 0;
 
   color: var(--light-text-color);
   font-weight: 700;
   font-size: 14px;
   line-height: 1.1;
-  text-align: center;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 
@@ -726,7 +726,6 @@ h3 {
 
 .example-thumb {
   position: relative;
-
   overflow: hidden;
 }
 
@@ -737,10 +736,12 @@ h3 {
 
 .example-overlay {
   position: absolute;
+  display: flex;
+  align-items: center;
   left: 0;
   top: 0;
-
-  padding: 63px 24px;
+  padding-left: 24px;
+  padding-right: 24px;
   margin: 0;
   width: 100%;
   height: 100%;
@@ -753,6 +754,9 @@ h3 {
   background: rgba(33, 150, 243, 0.9);
   transform: translateY(100%);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.example-overlay > .text {
 }
 
 .example-list .item:hover .example-overlay,
